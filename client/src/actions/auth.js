@@ -19,7 +19,7 @@ export const loadUser = () => async dispatch => {
   }
 
   try {
-    const res = await axios.get('_api/auth');
+    const res = await axios.get('/api/auth');
     console.log('05-1 loadUser Action is triggered in actions/auth', res);
 
     dispatch({
@@ -45,7 +45,7 @@ export const register = ({ name, email, password }) => async dispatch => {
   const body = JSON.stringify({ name, email, password });
 
   try {
-    const res = await axios.post('_api/users', body, config);
+    const res = await axios.post('/api/users', body, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
