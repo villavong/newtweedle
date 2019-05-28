@@ -19,7 +19,7 @@ export const loadUser = () => async dispatch => {
   }
 
   try {
-    const res = await axios.get('//localhost:5000/api/auth');
+    const res = await axios.get('_api/auth');
     console.log('05-1 loadUser Action is triggered in actions/auth', res);
 
     dispatch({
@@ -45,7 +45,7 @@ export const register = ({ name, email, password }) => async dispatch => {
   const body = JSON.stringify({ name, email, password });
 
   try {
-    const res = await axios.post('//localhost:5000/api/users', body, config);
+    const res = await axios.post('_api/users', body, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -76,7 +76,7 @@ export const login = (email, password) => async dispatch => {
   const body = JSON.stringify({ email, password });
 
   try {
-    const res = await axios.post('//localhost:5000/api/auth', body, config);
+    const res = await axios.post('/api/auth', body, config);
     console.log(
       '03 login in actions/auth.js is dispatching the data(payload) to reducer',
       res
