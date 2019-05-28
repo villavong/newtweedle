@@ -1,7 +1,15 @@
 import React, { Fragment, useState } from 'react';
+import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
+import PropTypes from 'prop-types';
 
-const Register = () => {
+//=(props) // props.setAlert
+// it can be written like {setAlert}, destructed
+
+const Register = ({ setAlert, register, isAuthenticated }) => {
+  //this is hooks
   //formData : data
   //setFormData : function
   const [formData, setFormData] = useState({
@@ -16,17 +24,26 @@ const Register = () => {
 
   //WHY ...formData? copy?
   //[e.target.name]: e.target.value  isn't setting the data?
-  const onChange = e =>
+  const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(
+      '01.onChange puts new data into state - setFormData - Register.js'
+    );
+  };
 
   const onSubmit = async e => {
     e.preventDefault();
+
     if (password !== password2) {
-      console.log('Passwords do not match', 'danger');
+      setAlert('Passwords do not match', 'danger');
     } else {
-      console.log(formData);
+      register({ name, email, password });
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
@@ -84,4 +101,17 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { setAlert, register }
+)(Register);
