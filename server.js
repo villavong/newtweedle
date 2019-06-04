@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 //   next();
 // });
 
-app.get('/', (req, res) => res.send('API running'));
+// app.get('/', (req, res) => res.send('API running'));
 //enable cors for dev
 app.use(cors());
 app.options('*', cors());
