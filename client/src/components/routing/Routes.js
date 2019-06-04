@@ -14,6 +14,7 @@ import Posts from '../posts/Posts';
 import Post from '../post/Post';
 import NotFound from '../layout/NotFound';
 import PrivateRoute from '../routing/PrivateRoute';
+import Chat from '../chat/Chat';
 
 const Routes = () => {
   return (
@@ -31,6 +32,8 @@ const Routes = () => {
         <PrivateRoute exact path='/add-education' component={AddEducation} />
         <PrivateRoute exact path='/posts' component={Posts} />
         <PrivateRoute exact path='/posts/:id' component={Post} />
+        <Route exact path='/chat' component={Chat} />
+
         <Route component={NotFound} />
       </Switch>
     </section>

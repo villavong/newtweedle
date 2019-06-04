@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Button } from 'semantic-ui-react';
 
 const Landing = ({ isAuthenticated }) => {
   if (isAuthenticated) {
@@ -12,11 +13,8 @@ const Landing = ({ isAuthenticated }) => {
     <section className='landing'>
       <div className='dark-overlay'>
         <div className='landing-inner'>
-          <h1 className='x-large'>Developer Connector</h1>
-          <p className='lead'>
-            Create a developer profile/portfolio, share posts and get help from
-            other developers
-          </p>
+          <h1 className='x-large'>Chat With Me</h1>
+          <p className='lead'>Make New Friends</p>
           <div className='buttons'>
             <Link to='/register' className='btn btn-primary'>
               Sign Up
