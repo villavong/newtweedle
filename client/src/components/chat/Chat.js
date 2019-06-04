@@ -10,7 +10,7 @@ class Chat extends Component {
     super(props);
     this.state = {
       messages: [],
-      socket: openSocket('http://localhost:3000')
+      socket: openSocket('https://quiet-harbor-20821.herokuapp.com')
     };
 
     this.state.socket.on('new-message', message => {
@@ -23,7 +23,7 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/api/message', {
+    fetch('https://quiet-harbor-20821.herokuapp.com/api/message', {
       method: 'GET'
     })
       .then(res => {
@@ -68,7 +68,7 @@ class Chat extends Component {
       content: content
     };
 
-    fetch('http://localhost:3000/api/message', {
+    fetch('https://quiet-harbor-20821.herokuapp.com/api/message', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
