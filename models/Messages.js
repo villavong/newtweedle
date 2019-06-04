@@ -3,12 +3,16 @@ const Schema = mongoose.Schema;
 
 // Blueprint of what a message would look like in our DB.
 const MessageSchema = new Schema({
+  id: {
+    type: String
+  },
   sender: {
     type: String,
     required: true
   },
   content: {
-    type: String
+    type: String,
+    required: true
   },
   timestamp: {
     type: Date,

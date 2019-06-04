@@ -4,6 +4,7 @@ import MessagesContainer from './MessagesContainer';
 import InputContainer from './InputContainer';
 import './Chat.css';
 import openSocket from 'socket.io-client';
+import uuid from 'uuid';
 
 class Chat extends Component {
   constructor(props) {
@@ -63,7 +64,9 @@ class Chat extends Component {
   }
 
   handleSubmit = (sender, content) => {
+    const unique_id = uuid.v4();
     let reqBody = {
+      id: unique_id,
       sender: sender,
       content: content
     };
