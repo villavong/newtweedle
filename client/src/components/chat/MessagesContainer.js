@@ -8,9 +8,7 @@ class MessagesContainer extends Component {
         {this.props.messages.map((message, index) => {
           return (
             <Comment key={'c' + index}>
-              <Comment.Author as='b'>
-                {message.sender} - {message.id}
-              </Comment.Author>
+              <Comment.Author as='b'>{message.sender}</Comment.Author>
               <Comment.Text>{message.content}</Comment.Text>
             </Comment>
           );
