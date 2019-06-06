@@ -6,12 +6,14 @@ const path = require('path');
 const socket = require('socket.io');
 const Message = require('./models/Messages.js');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 
 connectDB();
 //init middleware
 app.use(express.json({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(fileUpload());
 
 // what is it?
 
@@ -106,3 +108,23 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, './client/build/index.html'));
   });
 }
+
+//file upload
+
+// Upload Endpoint
+app.post('/upload', (req, res) => {
+  if (req.files === null) {
+    return res.status(400).json({ msg: 'No file uploaded' });
+  }
+
+  const file = req.files.file;
+
+  file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+
+    res.json({ fileName: file.name, filePath: `/uploads/${file.name}` });
+  });
+});
